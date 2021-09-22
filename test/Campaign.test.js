@@ -66,7 +66,7 @@ describe('Campaigns', () => {
 
   it('allows a manager to make a payment request', async () => {
     await campaign.methods
-    .createRequest('Buy fucking batteries', '100', accounts[1])
+    .createRequest('Buy batteries', '100', accounts[1])
     .send({
       from: accounts[0],
       gas: '1000000'
@@ -74,7 +74,7 @@ describe('Campaigns', () => {
 
     const request = await campaign.methods.requests(0).call();
 
-    assert.equal('Buy fucking batteries', request.description);
+    assert.equal('Buy batteries', request.description);
   });
 
   it('processes requests', async () => {
@@ -90,7 +90,7 @@ describe('Campaigns', () => {
     });
 
     await campaign.methods
-      .createRequest('fuck', web3.utils.toWei('5', 'ether'), accounts[1])
+      .createRequest('test', web3.utils.toWei('5', 'ether'), accounts[1])
       .send({from: accounts[0], gas: '1000000'});
 
     await campaign.methods.approveRequest(0).send({
